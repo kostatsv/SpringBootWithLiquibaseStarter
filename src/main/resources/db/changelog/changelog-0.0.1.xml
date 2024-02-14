@@ -1,0 +1,271 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="admin (generated)" id="1702317164869-1">
+        <createSequence incrementBy="50" sequenceName="PASSWORD_HISTORY_SEQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-2">
+        <createSequence incrementBy="50" sequenceName="PASSWORD_RESET_TOKEN_SEQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-3">
+        <createSequence incrementBy="50" sequenceName="ROLE_SEQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-4">
+        <createSequence incrementBy="50" sequenceName="ROLE_URL_SEQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-5">
+        <createSequence incrementBy="50" sequenceName="URL_SEQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-6">
+        <createSequence incrementBy="50" sequenceName="USER_SEQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-7">
+        <createTable tableName="PASSWORD_HISTORY">
+            <column autoIncrement="true" name="PK" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PASSWORD_HISTORYPK"/>
+            </column>
+            <column name="CREATED" type="TIMESTAMP(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_UPDATED" type="TIMESTAMP(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_FK" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-8">
+        <createTable tableName="PASSWORD_RESET_TOKEN">
+            <column autoIncrement="true" name="PK" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PASSWORD_RESET_TOKENPK"/>
+            </column>
+            <column name="CREATED" type="TIMESTAMP(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_UPDATED" type="TIMESTAMP(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_PW_EXPIRED_REQUEST" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RESET_TOKEN" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USERNAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-9">
+        <createTable tableName="ROLE">
+            <column autoIncrement="true" name="PK" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ROLEPK"/>
+            </column>
+            <column name="CREATED" type="TIMESTAMP(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_UPDATED" type="TIMESTAMP(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LANDING_PAGE" type="VARCHAR(255)"/>
+            <column name="DELETED" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_DESCRIPTION" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_NAME" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-10">
+        <createTable tableName="ROLE_URL">
+            <column autoIncrement="true" name="PK" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ROLE_URLPK"/>
+            </column>
+            <column name="CREATED" type="TIMESTAMP(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_UPDATED" type="TIMESTAMP(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="READ_ONLY" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_FK" type="BIGINT"/>
+            <column name="URL_FK" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-11">
+        <createTable tableName="URL">
+            <column autoIncrement="true" name="PK" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="URLPK"/>
+            </column>
+            <column name="CREATED" type="TIMESTAMP(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_UPDATED" type="TIMESTAMP(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARENT_FK" type="BIGINT"/>
+            <column name="URL_TYPE" type="NVARCHAR(10)"/>
+            <column name="URL" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="URL_DESCRIPTION" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-12">
+        <createTable tableName="USER">
+            <column autoIncrement="true" name="PK" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="USERPK"/>
+            </column>
+            <column name="CREATED" type="TIMESTAMP(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_UPDATED" type="TIMESTAMP(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACCOUNT_END_DATE" type="date"/>
+            <column name="ACCOUNT_START_DATE" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COLOUR_CONTRAST" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CONSECUTIVE_FAILED_LOGIN" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LANDING_PAGE" type="VARCHAR(255)"/>
+            <column name="DELETED" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOCKED" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NEW_PASSWORD_REQUIRED" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD_EXPIRES" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD_EXPIRES_EMAIL_DATE" type="date"/>
+            <column name="PASSWORD_NEARLY_EXPIRES_EMAIL_DATE" type="date"/>
+            <column name="QUICK_NAV_HOTKEY" type="VARCHAR(255)"/>
+            <column name="UNLOCK_TIME" type="TIMESTAMP(6)"/>
+            <column name="USERNAME" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_FK" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-13">
+        <createTable tableName="USER_ROLE">
+            <column name="ROLE_FK" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_FK" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-14">
+        <addUniqueConstraint columnNames="RESET_TOKEN" constraintName="UC_PASSWORD_RESET_TOKENRESET_TOKEN_COL" tableName="PASSWORD_RESET_TOKEN"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-15">
+        <addUniqueConstraint columnNames="ROLE_NAME" constraintName="UC_ROLEROLE_NAME_COL" tableName="ROLE"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-16">
+        <addUniqueConstraint columnNames="URL" constraintName="UC_URLURL_COL" tableName="URL"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-17">
+        <addUniqueConstraint columnNames="EMAIL" constraintName="UC_USEREMAIL_COL" tableName="USER"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-18">
+        <addUniqueConstraint columnNames="USERNAME" constraintName="UC_USERUSERNAME_COL" tableName="USER"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-19">
+        <createIndex indexName="PASSWORD_HISTORY_IDX_1" tableName="PASSWORD_HISTORY">
+            <column name="USER_FK"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-20">
+        <createIndex indexName="ROLE_IDX_1" tableName="ROLE">
+            <column name="PK"/>
+            <column name="VERSION"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-21">
+        <createIndex indexName="ROLE_URL_IDX_1" tableName="ROLE_URL">
+            <column name="PK"/>
+            <column name="VERSION"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-22">
+        <createIndex indexName="ROLE_URL_IDX_2" tableName="ROLE_URL">
+            <column name="ROLE_FK"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-23">
+        <createIndex indexName="ROLE_URL_IDX_3" tableName="ROLE_URL">
+            <column name="URL_FK"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-24">
+        <createIndex indexName="USER_IDX_1" tableName="USER">
+            <column name="PK"/>
+            <column name="VERSION"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-25">
+        <createIndex indexName="USER_IDX_2" tableName="USER">
+            <column name="ROLE_FK"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-26">
+        <addForeignKeyConstraint baseColumnNames="ROLE_FK" baseTableName="ROLE_URL" constraintName="FK_ROLEURL_TO_ROLE" deferrable="false" initiallyDeferred="false" referencedColumnNames="PK" referencedTableName="ROLE" validate="true"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-27">
+        <addForeignKeyConstraint baseColumnNames="URL_FK" baseTableName="ROLE_URL" constraintName="FK_ROLEURL_TO_URL" deferrable="false" initiallyDeferred="false" referencedColumnNames="PK" referencedTableName="URL" validate="true"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-28">
+        <addForeignKeyConstraint baseColumnNames="ROLE_FK" baseTableName="USER" constraintName="FK_USER_TO_ROLE" deferrable="false" initiallyDeferred="false" referencedColumnNames="PK" referencedTableName="ROLE" validate="true"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-29">
+        <addForeignKeyConstraint baseColumnNames="ROLE_FK" baseTableName="USER_ROLE" constraintName="FKd7jd90r5i4dp7cw7u5niy537s" deferrable="false" initiallyDeferred="false" referencedColumnNames="PK" referencedTableName="ROLE" validate="true"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-30">
+        <addForeignKeyConstraint baseColumnNames="USER_FK" baseTableName="USER_ROLE" constraintName="FKere6fj189o6pq98rakueo8opj" deferrable="false" initiallyDeferred="false" referencedColumnNames="PK" referencedTableName="USER" validate="true"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1702317164869-31">
+        <addForeignKeyConstraint baseColumnNames="USER_FK" baseTableName="PASSWORD_HISTORY" constraintName="FKs8ac9h3yfbvo2irw36bkqtmi7" deferrable="false" initiallyDeferred="false" referencedColumnNames="PK" referencedTableName="USER" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

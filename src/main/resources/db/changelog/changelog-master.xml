@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+  <property name="auto.increment" value="false" global="true" dbms="mssql,oracle,h2" />
+
+  <property name="now" value="SYSDATETIME()" dbms="mssql" />
+  <property name="now" value="sysdate" dbms="oracle" />
+  <property name="now" value="now()" dbms="postgresql,h2,mysql" />
+
+  <property name="nextSequence" value="next value for hibernate_sequence" dbms="mssql" />
+  <property name="nextSequence" value="hibernate_sequence.nextval" dbms="oracle" />
+  <property name="nextSequence" value="hibernate_sequence.NEXTVAL" dbms="h2" />
+
+  <changeSet id="alter database transaction isolation level" author="admin" runInTransaction="false" dbms="mssql">
+    <validCheckSum>PAGE_LOCKING_FIX</validCheckSum>
+    <preConditions onFail="MARK_RAN">
+      <changeLogPropertyDefined property="enable-configure-transaction-isolation-level" value="true"/>
+    </preConditions>
+    <sql>ALTER DATABASE ${database-name} SET ALLOW_SNAPSHOT_ISOLATION ON;</sql>
+    <sql>ALTER DATABASE ${database-name} SET SINGLE_USER WITH ROLLBACK IMMEDIATE;</sql>
+    <sql>ALTER DATABASE ${database-name} SET READ_COMMITTED_SNAPSHOT ON;</sql>
+    <sql>ALTER DATABASE ${database-name} SET MULTI_USER;</sql>
+  </changeSet>
+  
+  <!--<include file="db/changelog/changelog-0.0.1.xml" />-->
+
+</databaseChangeLog>
